@@ -10,6 +10,7 @@ const viewsPath=path.join(__dirname,'../src/template/views')
 const partialPath=path.join(__dirname,'../src/template/partials')
 
 const app=express();
+const port=process.env.PORT || 3000
 
 //setup static directory to server
 app.use(express.static(pathToDirectory))
@@ -38,13 +39,14 @@ app.get('/about', (req,res)=>{
 app.get('/help', (req,res)=>{
     res.render('help',{
         title:'Help Contents',
-        helpText:'This is some help Text',
+        helpText:'Site in progress!',
         name:'Rajat Singh',
         contact:'rajatsinghbs80@gmail.com'
     })
 })
 
 app.get('/weather',(req,res)=>{
+
     if(!req.query.address){
         return res.send({
             error:'Please Provide an address'
@@ -72,7 +74,7 @@ app.get('/weather',(req,res)=>{
 
 app.get('/help/*',(req,res)=>{
     res.render('errorView',{
-         message:'Help article not found',
+         message:'Site in progress!',
          name:'Rajat Singh',
         contact:'rajatsinghbs80@gmail.com'
     })
@@ -90,6 +92,6 @@ app.get('*',(req,res)=>{
 
 })
 
-app.listen(3000,()=>{
-  console.log('The server is running on port 3000')
+app.listen(port,()=>{
+  console.log('The server is running on port' + port)
 })
